@@ -156,6 +156,7 @@ export const questionBank = [
             {
                 id: 13,
                 question: "Examinez l'illustration. Comment une trame envoyée depuis PCA est-elle transmise à PCC si la table d'adresses MAC du commutateur SW1 est vide ?",
+                image: "img/q55.jpg",
                 options: {
                     a: "SW1 abandonne la trame car il ne connaît pas l'adresse MAC de destination.",
                     b: "SW1 diffuse la trame sur tous les ports de SW1, à l'exception du port d'entrée de la trame dans le commutateur.",
@@ -192,6 +193,7 @@ export const questionBank = [
             {
                 id: 16,
                 question: "Examinez l'illustration. L'hôte A a envoyé un paquet à l'hôte B. Quelles sont les adresses IP et MAC source sur le paquet lorsqu'il atteint l'hôte B ?",
+                image: "img/q16.jpg",
                 options: {
                     a: "MAC source : 00E0.FE10.17A3, IP source : 192.168.1.1",
                     b: "MAC source : 00E0.FE10.17A3, IP source : 10.1.1.10",
@@ -205,6 +207,7 @@ export const questionBank = [
             {
                 id: 17,
                 question: "Reportez-vous à l'illustration. Quels sont les rôles possibles pour les ports A, B, C et D dans ce réseau RSTP ?",
+                image: "img/q17.png",
                 options: {
                     a: "Désigné, racine, alternatif, racine",
                     b: "Désigné, alternatif, racine, racine",
@@ -267,6 +270,7 @@ export const questionBank = [
             {
                 id: 22,
                 question: "Examinez l'illustration. Un administrateur réseau configure le routage inter-VLAN sur un réseau. Pour l'instant, un seul VLAN est utilisé, mais d'autres seront ajoutés prochainement. Quel est le rôle du paramètre manquant, indiqué par un point d'interrogation mis en surbrillance dans l'illustration ?",
+                image:"img/q22.jpg",
                 options: {
                     a: "Il identifie le numéro du VLAN.",
                     b: "Il identifie la sous-interface.",
@@ -304,6 +308,7 @@ export const questionBank = [
             {
                 id: 5,
                 question: "Examinez l'illustration. En plus des routes statiques qui dirigent le trafic vers les réseaux 10.10.0.0/16 et 10.20.0.0/16, le routeur HQ est configuré avec la commande suivante : ip route 0.0.0.0 0.0.0.0 serial 0/1/1. Quel est l'objectif de cette commande ?",
+                image: "img/q25.jpg",
                 options: {
                     a: "Les paquets dont le réseau de destination n'est ni 10.10.0.0/16 ni 10.20.0.0/16, ou dont le réseau de destination n'est pas connecté directement seront transférés à Internet.",
                     b: "Les paquets reçus depuis Internet seront transférés à l'un des LAN connectés à R1 ou à R2.",
@@ -316,6 +321,7 @@ export const questionBank = [
             {
                 id: 6,
                 question: "Examinez l'illustration. Quelle adresse MAC de destination est utilisée lorsque des trames sont envoyées depuis la station de travail vers la passerelle par défaut ?",
+                image: "img/q26.jpg",
                 options: {
                     a: "Les adresses MAC du routeur de transfert et du routeur en veille.",
                     b: "L'adresse MAC du routeur de transfert",
@@ -328,6 +334,7 @@ export const questionBank = [
             {
                 id: 7,
                 question: "Reportez-vous à l'illustration. Un administrateur réseau a relié deux commutateurs via la technologie EtherChannel. Si le protocole STP fonctionne, quel sera le résultat final ?",
+                image: "img/q27.jpg",
                 options: {
                     a: "Les commutateurs équilibreront la charge et utiliseront les deux EtherChannels pour transférer les paquets.",
                     b: "La boucle générée créera une tempête de diffusion.",
@@ -340,6 +347,7 @@ export const questionBank = [
             {
                 id: 8,
                 question: "Reportez-vous à l'illustration. Quelle route statique un technicien informatique doit-il saisir pour créer une route de secours vers le réseau 172.16.1.0 qui sera utilisée uniquement en cas de défaillance de la route principale associée à RIP ?",
+                image: "img/q28.jpg",
                 options: {
                     a: "ip route 172.16.1.0 255.255.255.0 s0/0/0 121",
                     b: "ip route 172.16.1.0 255.255.255.0 s0/0/0 111",
@@ -403,7 +411,7 @@ export const questionBank = [
             {
                 id: 13,
                 question: "Reportez-vous à l'illustration. L'administrateur réseau est en train de configurer la fonction de sécurité du port sur le commutateur SWC. L'administrateur a émis la commande show port-security interface fa 0/2 pour vérifier la configuration. Que peut-on conclure de la sortie qui est montrée?",
-                image: "img/img5.jpg",
+                image: "img/img33.jpg",
                 options: {
                     a: "Le port est configuré en tant que liaison de trunk.",
                     b: "Les violations de sécurité entraîneront l'arrêt immédiat de ce port.",
@@ -478,6 +486,7 @@ export const questionBank = [
             {
                 id: 19,
                 question: "Examinez l'illustration. Un ingénieur réseau configure le routage IPv6 sur le réseau. Quelle commande exécutée sur le routeur HQ permet de configurer une route par défaut vers Internet en vue de transférer les paquets vers un réseau de destination IPv6 qui n'est pas répertorié dans la table de routage ?",
+                image: "img/q39.jpg",
                 options: {
                     a: "ipv6 route ::/0 serial 0/0/0",
                     b: "ipv6 route ::/0 serial 0/1/1",
@@ -514,6 +523,7 @@ export const questionBank = [
             {
                 id: 22,
                 question: "Reportez-vous à l'illustration. Quelle commande de route statique peut être entrée sur R1 pour transférer le trafic vers le réseau local connecté à R2?",
+                image: "img/q42.jpg",
                 options: {
                     a: "ipv6 route 2001:db8:12:10::/64 S0/0/0 fe80::2",
                     b: "ipv6 route 2001:db8:12:10::/64 S0/0/1 2001:db8:12:10::1",
@@ -526,6 +536,7 @@ export const questionBank = [
             {
                 id: 23,
                 question: "Examinez l'illustration. Quelle métrique permet de transférer un paquet de données avec l'adresse de destination IPv6 2001:DB8:ACAD:E:240:BFF:FED4:9DD2 ?",
+                image: "img/q43.jpg",
                 options: {
                     a: "90",
                     b: "128",
@@ -540,6 +551,7 @@ export const questionBank = [
             {
                 id: 24,
                 question: "Examinez l'illustration. Le routeur R1 entretient une relation de voisinage OSPF avec le routeur du FAI sur le réseau 192.168.0.32. La liaison réseau 192.168.0.36 doit servir de liaison de secours si la liaison OSPF tombe en panne. La commande de route statique flottante ip route 0.0.0.0 0.0.0.0 S0/0/1 100 a été exécutée sur R1 et, à présent, le trafic utilise la liaison de secours même lorsque la liaison OSPF est activée et opérationnelle. Quelle modification doit être apportée à la commande de route statique afin que le trafic utilise obligatoirement la liaison OSPF lorsque celle-ci est active ?",
+                image: "img/44.jpg",
                 options: {
                     a: "Configuration du réseau de destination sur 192.168.0.34.",
                     b: "Ajout de l'adresse voisine du tronçon suivant, à savoir 192.168.0.36.",
@@ -552,6 +564,7 @@ export const questionBank = [
             {
                 id: 25,
                 question: "Reportez-vous à l'illustration. Quelle route a été configurée comme route statique vers un réseau spécifique en utilisant l'adresse du tronçon suivant ?",
+                image: "img/q45.jpg",
                 options: {
                     a: "C 10.16.2.0/24 is directly connected, Serial0/0/0",
                     b: "S 0.0.0.0/0 [1/0] via 10.16.2.2",
@@ -564,6 +577,7 @@ export const questionBank = [
             {
                 id: 26,
                 question: "Reportez-vous à l'illustration. Quel trunk ne transmettra aucun trafic au terme du processus de sélection de pont racine ?",
+                image: "img/q46.jpg",
                 options: {
                     a: "Trunk1",
                     b: "Trunk2",
@@ -602,6 +616,7 @@ export const questionBank = [
             {
                 id: 29,
                 question: "Examinez l'illustration. Quelles sont les deux conclusions pouvant être tirées du résultat ?",
+                image: "img/q49.jpg",
                 options: {
                     a: "Le canal de port est un canal de couche 3.",
                     b: "La méthode d'équilibrage de charge utilisée est le port source vers le port de destination.",
@@ -627,6 +642,7 @@ export const questionBank = [
             {
                 id: 31,
                 question: "Reportez-vous à l'illustration. Un administrateur réseau a ajouté un nouveau sous-réseau au réseau et veut que les hôtes du sous-réseau reçoivent des adresses IPv4 du serveur DHCPv4. Quelles commandes permettent aux hôtes du nouveau sous-réseau de recevoir des adresses du serveur DHCPv4 ?",
+                image: "img/q50.jpg",
                 options: {
                     a: "R1(config)# interface G0/0",
                     b: "R1(config)# interface G0/1",
@@ -653,6 +669,7 @@ export const questionBank = [
             {
                 id: 33,
                 question: "Examinez l'illustration. Si les adresses IP du routeur de passerelle par défaut et du serveur de noms de domaine (DNS) sont correctes, quel est le problème de cette configuration ?",
+                image: "img/q53.jpg",
                 options: {
                     a: "Les commandes default-router et dns-server doivent être configurées avec des masques de sous-réseau.",
                     b: "L'adresse IP du serveur de noms de domaine (DNS) ne figure pas dans la liste d'adresses exclues.",
@@ -768,6 +785,7 @@ export const questionBank = [
             {
                 id: 42,
                 question: "Reportez-vous à l'illustration. L'administrateur réseau configure les deux commutateurs comme illustré. Cependant, l'hôte C ne peut envoyer de requête ping à l'hôte D et l'hôte E ne peut envoyer de requête ping à l'hôte F. Quelle action l'administrateur doit-il effectuer pour activer cette communication ?",
+                image: "img/q60.jpg",
                 options: {
                     a: "Inclure un routeur dans la topologie.",
                     b: "Associer les hôtes A et B avec le VLAN 10 au lieu du VLAN 1.",
@@ -795,6 +813,7 @@ export const questionBank = [
             {
                 id: 44,
                 question: "Reportez-vous à l'illustration. Supposons que le courant vient juste d'être rétabli. PC3 émet une requête de diffusion DHCP IPv4. À quel port SW1 transmet-il cette requête ?",
+                image: "img/q64.jpg",
                 options: {
                     a: "À Fa0/1, à Fa0/2 et à Fa0/3 uniquement",
                     b: "À Fa0/1, à Fa0/2 et à Fa0/4 uniquement",
@@ -832,6 +851,7 @@ export const questionBank = [
             {
                 id: 47,
                 question: "Reportez-vous à l'illustration. Que peut-on conclure de la configuration affichée sur R1?",
+                image: "img/q67.jpg",
                 options: {
                     a: "R1 fonctionne comme un serveur DHCPv4.",
                     b: "R1 enverra un message à un client DHCPv4 local pour contacter un serveur DHCPv4 au 10.10.8.",
@@ -892,6 +912,7 @@ export const questionBank = [
             {
                 id: 52,
                 question: "Reportez-vous à l'illustration. Un administrateur réseau a configuré les routeurs R1 et R2 comme faisant partie du groupe HSRP 1. Après le rechargement des routeurs, un utilisateur associé à l'hôte 1 s'est plaint d'une mauvaise connectivité à Internet. L'administrateur réseau a donc exécuté la commande show standby brief sur les deux routeurs pour vérifier le fonctionnement du protocole HSRP. En outre, l'administrateur a observé le tableau ARP sur Host1. Quelle entrée doit apparaître dans le tableau ARP sur Host1 pour acquérir la connectivité à Internet?",
+                image: "img/q72.jpg",
                 options: {
                     a: "L'adresse IP virtuelle et l'adresse MAC virtuelle du groupe HSRP 1",
                     b: "L'adresse IP virtuelle du groupe HSRP 1 et l'adresse MAC de R1",
@@ -940,6 +961,8 @@ export const questionBank = [
             {
                 id: 56,
                 question: "Quels sont les deux paramètres définis par défaut sur un routeur sans fil pouvant affecter la sécurité du réseau ?",
+                
+                image: "img/q76.jpg",
                 options: {
                     a: "Le SSID est diffusé.",
                     b: "Le filtrage des adresses MAC est activé.",
@@ -965,6 +988,7 @@ export const questionBank = [
             {
                 id: 58,
                 question: "Quelle commande permet de créer une route statique sur R2 pour atteindre PC B ?",
+                image: "img/q78.jpg",
                 options: {
                     a: "R2(config)# ip route 172.16.2.0 255.255.255.0 172.16.2.254",
                     b: "R2(config)# ip route 172.16.2.1 255.255.255.0 172.16.3.1",
@@ -977,6 +1001,7 @@ export const questionBank = [
             {
                 id: 59,
                 question: "Reportez-vous à l'illustration. R1 a été configuré avec la commande de route statique ip route 209.165.200.224 255.255.255.224 S0/0/0 et, par conséquent, les utilisateurs du réseau 172.16.0.0/16 ne peuvent pas accéder aux ressources sur Internet. Comment cette route statique doit-elle être modifiée pour permettre au trafic utilisateur du LAN d'accéder à Internet ?",
+                image: "img/q79.jpg",
                 options: {
                     a: "En ajoutant une distance administrative de 254.",
                     b: "En configurant le réseau et le masque de destination sur 0.0.0.0 0.0.0.0.",
@@ -1025,6 +1050,7 @@ export const questionBank = [
             {
                 id: 63,
                 question: "Examinez l'illustration. Tous les commutateurs affichés sont des modèles Cisco 2960 dont la priorité par défaut est identique et fonctionnant à la même bande passante. Quels sont les trois ports qui seront désignés pour STP ?",
+                image: "img/q83.jpg",
                 options: {
                     a: "Fa0/9",
                     b: "Fa0/10",
@@ -1064,6 +1090,7 @@ export const questionBank = [
             {
                 id: 66,
                 question: "Examinez l'illustration. R1 a été configuré comme illustré. Cependant, PC1 ne parvient pas à recevoir d'adresse IPv4. Quel est le problème ?",
+                image: "img/q86.png",
                 options: {
                     a: "La commande ip address dhcp n'a pas été exécutée sur l'interface Gi0/1.",
                     b: "R1 n'est pas configuré comme serveur DHCPv4.",
@@ -1100,6 +1127,7 @@ export const questionBank = [
             {
                 id: 69,
                 question: "Reportez-vous à l'illustration. Actuellement, le routeur R1 utilise une route EIGRP enregistrée via Branch2 pour atteindre le réseau 10.10.0.0/16. Quelle route statique flottante crée une route de secours vers le réseau 10.10.0.0/16 au cas où la liaison entre R1 et Branch2 serait interrompue ?",
+                image: "img/q89.png",
                 options: {
                     a: "ip route 10.10.0.0 255.255.0.0 Serial 0/0/0 100",
                     b: "ip route 10.10.0.0 255.255.0.0 209.165.200.226 100",
@@ -1126,6 +1154,7 @@ export const questionBank = [
             {
                 id: 71,
                 question: "Reportez-vous à l'illustration. Quelle opération effectue le routeur R1 sur un paquet associé à une adresse IPv6 de destination 2001:db8:cafe:5::1 ?",
+                image: "img/q91.png",
                 options: {
                     a: "supprimer le paquet",
                     b: "transmettre le paquet en sortie sur Serial0/0/0",
@@ -1162,6 +1191,7 @@ export const questionBank = [
             {
                 id: 74,
                 question: "Reportez-vous à l'illustration. Un administrateur réseau configure le routeur R1 pour l'attribution d'adresse IPv6. Sur la base de la configuration partielle, quel système d'attribution d'adresses IPv6 global monodiffusion l'administrateur a-t-il l'intention de mettre en œuvre ?",
+                image: "img/q94.png",
                 options: {
                     a: "configuration manuelle",
                     b: "SLAAC",
@@ -1174,6 +1204,7 @@ export const questionBank = [
             {
                 id: 75,
                 question: "Examinez l'illustration. Un administrateur réseau vérifie la configuration du commutateur S1. Quel protocole a été implémenté pour regrouper plusieurs ports physiques en une liaison logique ?",
+                image: "img/q95.png",
                 options: {
                     a: "DTP",
                     b: "STP",
@@ -1210,6 +1241,7 @@ export const questionBank = [
             {
                 id: 78,
                 question: "Examinez l'illustration. Un commutateur de couche 3 se charge du routage pour trois VLAN et se connecte à un routeur pour la connectivité Internet. Comment le commutateur doit-il être configuré ?",
+                image: "img/q98.jpg",
                 options: {
                     a: "(config)# interface vlan 1\n(config-if)# ip address 192.168.1.2 255.255.255.0\n(config-if)# no shutdown",
                     b: "(config)# ip routing",
@@ -1273,6 +1305,7 @@ export const questionBank = [
             {
                 id: 95,
                 question: "Examinez l'illustration. Un administrateur réseau vérifie la configuration du routage inter-VLAN. Les utilisateurs se plaignent que PC2 ne peut pas communiquer avec PC1. Sur la base de la sortie, quelle est la cause possible du problème ?",
+                image: "img/q999.png",
                 options: {
                     a: "Gi0/0 n'est pas configuré comme port de jonction.",
                     b: "L'interface de commande GigabitEthernet0/0.5 a été saisie de manière incorrecte.",
@@ -1425,6 +1458,7 @@ export const questionBank = [
             {
                 id: 141,
                 question: "Examinez l'illustration. PC-A et PC-B sont tous deux dans le VLAN 60. PC-A est incapable de communiquer avec PC-B. Quel est le problème ?",
+                image: "img/q140.png",
                 options: {
                     a: "Le VLAN natif doit être le VLAN 60.",
                     b: "Le VLAN natif est supprimé du lien.",
@@ -1534,6 +1568,7 @@ export const questionBank = [
             {
                 id: 86,
                 question: "Reportez-vous à l'illustration. Quels sont les trois hôtes qui recevront des requêtes ARP de l'hôte A, dans l'hypothèse où le port Fa0/4 sur les deux commutateurs est configuré pour transporter du trafic pour plusieurs VLAN ?",
+                image: "img/q106.jpg",
                 options: {
                     a: "hôte D",
                     b: "hôte C",
@@ -1597,6 +1632,7 @@ export const questionBank = [
             {
                 id: 91,
                 question: "Examinez l'illustration. Un administrateur réseau configure un routeur comme serveur DHCPv6. L'administrateur exécute une commande show ipv6 dhcp pool pour vérifier la configuration. Parmi les propositions suivantes, laquelle décrit la raison pour laquelle le nombre de clients actifs est 0 ?",
+                image: "img/q111.jpg",
                 options: {
                     a: "Aucune plage d'adresses IPv6 n'est spécifiée pour la configuration du pool DHCP IPv6.",
                     b: "Aucun client n'a encore communiqué avec le serveur DHCPv6.",
@@ -1687,6 +1723,7 @@ export const questionBank = [
             {
                 id: 101,
                 question: "Reportez-vous à l'illustration. Quelle instruction indiquée dans le résultat permet au routeur R1 de répondre aux demandes DHCPv6 sans état ?",
+                image: "img/q121.png",
                 options: {
                     a: "prefix-delegation 2001:DB8:8::/48 00030001000E84244E70",
                     b: "ipv6 unicast-routing",
@@ -1921,6 +1958,7 @@ export const questionBank = [
             {
                 id: 120,
                 question: "Examinez l'illustration. Un administrateur réseau vérifie la configuration du routage inter-VLAN. Les utilisateurs se plaignent que PC2 ne peut pas communiquer avec PC1. Sur la base de la sortie, quelle est la cause possible du problème ?",
+                image: "img/q120.png",
                 options: {
                     a: "Gi0/0 n'est pas configuré comme port de jonction.",
                     b: "L'interface de commande GigabitEthernet0/0.5 a été saisie de manière incorrecte.",
