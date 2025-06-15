@@ -172,6 +172,8 @@ function updateTimerDisplay() {
 
 // Question display functions
 function showQuestion(index) {
+    currentQuestion = index; // Update current question index
+    
     try {
         if (!questions || questions.length === 0) {
             throw new Error('Questions not initialized');
@@ -249,12 +251,12 @@ function showQuestion(index) {
         container.innerHTML = '';
         container.appendChild(questionElement);
         
-        // Update navigation
+        // Update navigation buttons after showing the question
         updateNavigationButtons();
+        
     } catch (error) {
         console.error('Error showing question:', error);
-        const container = document.getElementById('questions-container');
-        container.innerHTML = `<div class="error-message">Error loading question. Please try refreshing the page.</div>`;
+        showError('Error loading question. Please try again.');
     }
 }
 
@@ -262,26 +264,39 @@ function updateNavigationButtons() {
     const navContainer = document.getElementById('question-nav');
     navContainer.innerHTML = '';
     
-    for (let i = 0; i < questions.length; i++) {
-        const button = document.createElement('button');
-        button.className = 'nav-btn';
-        button.textContent = i + 1;
-        
-        if (i === currentQuestion) {
-            button.classList.add('active');
+    // Add End Exam button at the top
+    const endExamBtn = document.createElement('button');
+    endExamBtn.className = 'btn-netcad end-exam-btn';
+    endExamBtn.textContent = 'End Exam';
+    endExamBtn.onclick = () => {
+        if (confirm('Are you sure you want to end the exam? Your answers will be submitted.')) {
+            endExam();
         }
-        // Check if answered
-        if (Array.isArray(userAnswers[i])) {
-            if (userAnswers[i].length > 0) {
-                button.classList.add('answered');
-            }
-        } else if (userAnswers[i] !== null) {
+    };
+    navContainer.appendChild(endExamBtn);
+    
+    // Add question number buttons
+    questions.forEach((_, index) => {
+        const button = document.createElement('button');
+        button.className = 'question-nav-btn';
+        
+        // Set button color based on answer status and current question
+        if (index === currentQuestion) {
+            button.classList.add('current');
+        } else if (userAnswers[index] === null || 
+                  (Array.isArray(userAnswers[index]) && userAnswers[index].length === 0)) {
+            button.classList.add('unanswered');
+        } else {
             button.classList.add('answered');
         }
         
-        button.onclick = () => showQuestion(i);
+        button.textContent = index + 1;
+        button.onclick = () => {
+            currentQuestion = index; // Update current question index
+            showQuestion(index);
+        };
         navContainer.appendChild(button);
-    }
+    });
 }
 
 function selectAnswer(questionIndex, answer) {
@@ -338,7 +353,8 @@ function checkAnswer(questionIndex) {
 
 function nextQuestion(currentIndex) {
     if (currentIndex < questions.length - 1) {
-        showQuestion(currentIndex + 1);
+        currentQuestion = currentIndex + 1; // Update current question index
+        showQuestion(currentQuestion);
     } else {
         endExam();
     }
@@ -346,33 +362,18 @@ function nextQuestion(currentIndex) {
 
 // Exam control functions
 function startExam() {
-    try {
-        // Initialize exam with random questions
-        initializeExam();
-        
-        // Hide start screen and show exam screen
-        document.getElementById('start-screen').style.display = 'none';
-        document.getElementById('exam-screen').style.display = 'block';
-        
-        // Initialize exam state
-        currentQuestion = 0;
-        examStarted = true;
-        
-        // Start timer
-        startTimer();
-        
-        // Show first question
-        showQuestion(0);
-        
-        // Initialize navigation buttons
-        updateNavigationButtons();
-        
-        // Add security features
-        addSecurityFeatures();
-    } catch (error) {
-        console.error('Error starting exam:', error);
-        alert('There was an error starting the exam. Please try refreshing the page.');
-    }
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('exam-screen').style.display = 'block';
+    examStarted = true;
+    examSession.startTime = new Date().getTime();
+    examSession.lastActivity = new Date().getTime();
+    
+    // Initialize exam
+    generateRandomQuestions();
+    currentQuestion = 0; // Reset current question to 0
+    showQuestion(0); // Show first question
+    startTimer();
+    updateNavigationButtons();
 }
 
 function endExam() {
