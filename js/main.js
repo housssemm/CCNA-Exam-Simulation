@@ -286,22 +286,54 @@ function updateNavigationButtons() {
 
 function selectAnswer(questionIndex, answer) {
     const question = questions[questionIndex];
-
-    if (Array.isArray(question.correct)) { // Multiple choice question
+    const isMultipleAnswer = typeof question.correct === 'string' && question.correct.includes(',');
+    
+    if (isMultipleAnswer) {
+        // Initialize array if not already done
         if (!Array.isArray(userAnswers[questionIndex])) {
             userAnswers[questionIndex] = [];
         }
-        const indexInUserAnswers = userAnswers[questionIndex].indexOf(answer);
-        if (indexInUserAnswers > -1) {
-            userAnswers[questionIndex].splice(indexInUserAnswers, 1); // Deselect
+        
+        // Toggle the selected answer
+        const answerIndex = userAnswers[questionIndex].indexOf(answer);
+        if (answerIndex === -1) {
+            userAnswers[questionIndex].push(answer);
         } else {
-            userAnswers[questionIndex].push(answer); // Select
+            userAnswers[questionIndex].splice(answerIndex, 1);
         }
-    } else { // Single choice question
+    } else {
+        // Single answer question
         userAnswers[questionIndex] = answer;
     }
-    showQuestion(questionIndex);
-    checkAllQuestionsAnswered();
+    
+    // Update the UI
+    const options = document.querySelectorAll('.option');
+    options.forEach(option => {
+        if (isMultipleAnswer) {
+            const optionIndex = Array.from(options).indexOf(option);
+            const optionKey = Object.keys(question.options)[optionIndex];
+            option.classList.toggle('selected', userAnswers[questionIndex].includes(optionKey));
+        } else {
+            option.classList.toggle('selected', option.textContent === question.options[answer]);
+        }
+    });
+    
+    updateNavigationButtons();
+}
+
+function checkAnswer(questionIndex) {
+    const question = questions[questionIndex];
+    const userAnswer = userAnswers[questionIndex];
+    
+    if (typeof question.correct === 'string' && question.correct.includes(',')) {
+        // Multiple answer question
+        const correctAnswers = question.correct.split(',');
+        return correctAnswers.every(ans => userAnswer.includes(ans)) && 
+               userAnswer.length === correctAnswers.length;
+    } else {
+        // Single answer question
+        return userAnswer === question.correct;
+    }
 }
 
 function nextQuestion(currentIndex) {
@@ -357,50 +389,41 @@ function endExam() {
 }
 
 function showResults() {
-    let correctAnswersCount = 0;
-
+    let correctCount = 0;
+    let incorrectCount = 0;
+    let unansweredCount = 0;
+    
     questions.forEach((question, index) => {
-        const userAnswer = userAnswers[index];
-        let isCorrect = false;
-
-        if (Array.isArray(question.correct)) {
-            // Multiple choice question
-            if (Array.isArray(userAnswer) && userAnswer.length === question.correct.length &&
-                question.correct.every(val => userAnswer.includes(val))) {
-                isCorrect = true;
-            }
+        if (userAnswers[index] === null || 
+            (Array.isArray(userAnswers[index]) && userAnswers[index].length === 0)) {
+            unansweredCount++;
+        } else if (checkAnswer(index)) {
+            correctCount++;
         } else {
-            // Single choice question
-            isCorrect = (userAnswer === question.correct);
-        }
-
-        if (isCorrect) {
-            correctAnswersCount++;
+            incorrectCount++;
         }
     });
     
     const totalQuestions = questions.length;
-    const percentage = Math.round((correctAnswersCount / totalQuestions) * 100);
+    const percentage = Math.round((correctCount / totalQuestions) * 100);
     
-    document.getElementById('final-score').textContent = correctAnswersCount;
+    document.getElementById('final-score').textContent = correctCount;
     document.getElementById('percentage-score').textContent = percentage;
-    document.getElementById('correct-answers').textContent = correctAnswersCount;
-    document.getElementById('incorrect-answers').textContent = totalQuestions - correctAnswersCount - userAnswers.filter(a => (Array.isArray(a) ? a.length === 0 : a === null)).length;
-    document.getElementById('unanswered').textContent = userAnswers.filter(a => (Array.isArray(a) ? a.length === 0 : a === null)).length;
+    document.getElementById('correct-answers').textContent = correctCount;
+    document.getElementById('incorrect-answers').textContent = incorrectCount;
+    document.getElementById('unanswered').textContent = unansweredCount;
     
+    // Set performance message
     const performanceMessage = document.getElementById('performance-message');
     if (percentage >= 80) {
-        performanceMessage.textContent = 'Excellent! You have passed the exam!';
-        performanceMessage.style.backgroundColor = '#d4edda';
-        performanceMessage.style.color = '#155724';
+        performanceMessage.textContent = 'Excellent! You have a strong understanding of the material.';
+        performanceMessage.style.backgroundColor = 'var(--success-color)';
     } else if (percentage >= 60) {
-        performanceMessage.textContent = 'Good job! You have passed the exam.';
-        performanceMessage.style.backgroundColor = '#d4edda';
-        performanceMessage.style.color = '#155724';
+        performanceMessage.textContent = 'Good job! You have a solid understanding of the material.';
+        performanceMessage.style.backgroundColor = 'var(--warning-color)';
     } else {
-        performanceMessage.textContent = 'You need more practice. Keep studying!';
-        performanceMessage.style.backgroundColor = '#f8d7da';
-        performanceMessage.style.color = '#721c24';
+        performanceMessage.textContent = 'Keep studying! You need more practice with these concepts.';
+        performanceMessage.style.backgroundColor = 'var(--danger-color)';
     }
     
     document.getElementById('exam-screen').style.display = 'none';
