@@ -379,13 +379,6 @@ function startExam() {
 function endExam() {
     clearInterval(timerInterval);
     examEnded = true;
-    
-    const unanswered = userAnswers.filter(answer => (Array.isArray(answer) ? answer.length === 0 : answer === null)).length;
-    if (unanswered > 0 && timeLeft > 0) {
-        document.getElementById('unanswered-warning').style.display = 'block';
-        return;
-    }
-    
     showResults();
 }
 
@@ -427,6 +420,7 @@ function showResults() {
         performanceMessage.style.backgroundColor = 'var(--danger-color)';
     }
     
+    // Hide exam screen and show results
     document.getElementById('exam-screen').style.display = 'none';
     document.getElementById('results-container').style.display = 'block';
 }
@@ -584,17 +578,23 @@ function showReview() {
 }
 
 // Event listeners
-document.getElementById('restart-btn').addEventListener('click', () => {
-    if (confirm("Are you sure you want to restart? This will reset your progress.")) {
-        location.reload();
-    }
-});
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('restart-btn').addEventListener('click', function() {
+        // Reset exam state
+        examStarted = false;
+        examEnded = false;
+        currentQuestion = 0;
+        timeLeft = 75 * 60;
+        userAnswers = [];
+        
+        // Show start screen
+        document.getElementById('results-container').style.display = 'none';
+        document.getElementById('start-screen').style.display = 'block';
+    });
 
-document.getElementById('review-mistakes-btn').addEventListener('click', showReview);
-
-document.getElementById('back-to-results').addEventListener('click', () => {
-    document.getElementById('review-container').style.display = 'none';
-    document.getElementById('results-container').style.display = 'block';
+    document.getElementById('review-mistakes-btn').addEventListener('click', function() {
+        showReview();
+    });
 });
 
 // Make functions available globally
